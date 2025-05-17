@@ -1,0 +1,286 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title>{% block head_title %}{% endblock %}</title>
+  {% block extra_head %}
+  {% endblock %}
+
+  <link rel="shortcut icon" href="{% static 'img/fiit-icon.webp' %}" type="image/x-icon">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+  <style type="text/css">
+    @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    body {
+      font-family: 'Exo', sans-serif;
+    }
+
+    div {
+      position: relative;
+      z-index: 1000;
+    }
+
+
+
+    .area {
+      background: #caddf7;
+      background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      z-index: -10;
+
+
+    }
+
+    .circles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -10;
+    }
+
+    .circles li {
+      position: absolute;
+      display: block;
+      list-style: none;
+      width: 20px;
+      height: 20px;
+      background: rgba(0, 0, 0, 0.596);
+      animation: animate 25s linear infinite;
+      bottom: -150px;
+
+    }
+
+
+
+    .circles li:nth-child(1) {
+      left: 25%;
+      width: 80px;
+      height: 80px;
+      animation-delay: 0s;
+    }
+
+
+    .circles li:nth-child(2) {
+      left: 10%;
+      width: 20px;
+      height: 20px;
+      animation-delay: 2s;
+      animation-duration: 12s;
+    }
+
+    .circles li:nth-child(3) {
+      left: 70%;
+      width: 20px;
+      height: 20px;
+      animation-delay: 4s;
+    }
+
+    .circles li:nth-child(4) {
+      left: 40%;
+      width: 60px;
+      height: 60px;
+      animation-delay: 0s;
+      animation-duration: 18s;
+    }
+
+    .circles li:nth-child(5) {
+      left: 65%;
+      width: 20px;
+      height: 20px;
+      animation-delay: 0s;
+    }
+
+    .circles li:nth-child(6) {
+      left: 75%;
+      width: 110px;
+      height: 110px;
+      animation-delay: 3s;
+    }
+
+    .circles li:nth-child(7) {
+      left: 35%;
+      width: 150px;
+      height: 150px;
+      animation-delay: 7s;
+    }
+
+    .circles li:nth-child(8) {
+      left: 50%;
+      width: 25px;
+      height: 25px;
+      animation-delay: 15s;
+      animation-duration: 45s;
+    }
+
+    .circles li:nth-child(9) {
+      left: 20%;
+      width: 15px;
+      height: 15px;
+      animation-delay: 2s;
+      animation-duration: 35s;
+    }
+
+    .circles li:nth-child(10) {
+      left: 85%;
+      width: 150px;
+      height: 150px;
+      animation-delay: 0s;
+      animation-duration: 11s;
+    }
+
+
+
+    @keyframes animate {
+
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+      }
+
+      100% {
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+      }
+
+    }
+
+    html,
+    body,
+    header,
+    .carousel {
+      height: 60vh;
+    }
+
+
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+
+      background: light-dark(rgb(218, 232, 238), blue);
+
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      width: 100dvw;
+      height: 100dvh;
+      opacity: 0.9;
+      z-index: -9;
+      filter: blur(100%);
+    }
+
+    .help-block {
+      color: red;
+      font-size: small;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    .control-group {
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 740px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 100vh;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 100vh;
+      }
+    }
+  </style>
+</head>
+
+{% include "navbar.html" %}
+
+<body id="body">
+  <!-- <div class="area"> -->
+  <div class="mt-5 pt-4">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      <p class="small">{{message}}</p>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+  {% block content %}
+
+  {% endblock %}
+
+  {% include "scripts.html" %}
+
+  {% block extra_scripts %}
+
+  {% endblock %}
+
+  <footer class=" py-3 w-100" style="position: fixed; bottom: 0; background-color: rgb(255, 255, 255);">
+
+    <h6 class="text-center text-primary"><img src="{% static 'img/fiit-logo.png' %}" width="100px" alt="">&Fopf; 2025
+    </h6>
+  </footer>
+  <!-- <div class="context">
+      <h1>Pure Css Animated Background</h1>
+    </div> -->
+
+
+
+  <ul class="circles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  </div>
+
+</body>
+
+</html>
